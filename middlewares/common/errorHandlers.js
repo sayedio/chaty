@@ -6,3 +6,8 @@ function notFoundError(req, res, next) {
 function handleError(err, req, res, next) {
   res.render("error", { title: "Error page" });
 }
+
+module.exports = {
+  notFoundError,
+  handleError,
+};
