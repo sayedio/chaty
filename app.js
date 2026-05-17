@@ -10,17 +10,19 @@ const {
   notFoundError,
 } = require("./middlewares/common/errorHandlers");
 
+const app = express();
+dotenv.config({
+  debug: process.env.NODE_ENV === "development",
+});
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 mongoose
-  .connect("process.env.MONGO_URI")
+  .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("Connected to DB");
   })
   .catch((err) => console.log(err));
-
-const app = express();
-dotenv.config();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 //set view engine
 app.set("view engine", "ejs");
