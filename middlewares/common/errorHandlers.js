@@ -5,7 +5,7 @@ function notFoundError(req, res, next) {
 }
 function handleError(err, req, res, next) {
   res.locals.error = process.env.NODE_ENV === "development" ? err : err.message;
-  if (!res.locals.html) {
+  if (res.locals.html) {
     res.render("error", {
       title: "Error page",
       desc: res.locals.error,

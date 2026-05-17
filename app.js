@@ -10,6 +10,10 @@ const {
   notFoundError,
 } = require("./middlewares/common/errorHandlers");
 
+const loginHandler = require("./routers/loginHandler");
+const inboxHandler = require("./routers/inboxHandler");
+const usersHandler = require("./routers/usersHandler");
+
 const app = express();
 dotenv.config({
   debug: process.env.NODE_ENV === "development",
@@ -31,6 +35,11 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 
 app.use(express.static(path.join(__dirname, "public")));
 
+// routers
+
+app.use("/", loginHandler);
+app.use("/users", usersHandler);
+app.use("/inbox", inboxHandler);
 // 404 not found
 app.use(notFoundError);
 
