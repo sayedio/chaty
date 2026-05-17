@@ -1,7 +1,5 @@
 function getUser(req, res, next) {
-  res.render("users", {
-    title: "Users page",
-  });
+  res.render("users");
 }
 
 module.exports = {
