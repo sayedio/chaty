@@ -9,6 +9,7 @@ function uploader(
   error_msg,
 ) {
   upload_folder = `${__dirname}/../public/uploads/avatars`;
+  // upload_folder = path.join(__dirname,"..","public","uploads","avatars")
   const storage = multer.diskStorage({
     destination: (req, file, cb) => {
       cb(null, upload_folder);
