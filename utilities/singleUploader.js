@@ -8,7 +8,7 @@ function uploader(
   max_file_size,
   error_msg,
 ) {
-  upload_folder = `${__dirname}/../public/uploads/avatars`;
+  const upload_folder = `${__dirname}/../public/uploads/avatars`;
   // upload_folder = path.join(__dirname,"..","public","uploads","avatars")
   const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -26,7 +26,7 @@ function uploader(
         "-" +
         Date.now();
 
-      cb(filename + fileExt);
+      cb(null, filename + fileExt);
     },
   });
 

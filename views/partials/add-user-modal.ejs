@@ -92,14 +92,14 @@
 
           })
         }else{
-          successToast.showToast();
-          closeModal();
+          
           // document.querySelector("p.error").style.display = "none";
 
           setTimeout(()=>{
+            successToast.showToast();
+            closeModal();
             location.reload();
-          },1000)
-
+          },500)
         }
 
       }

@@ -10,7 +10,7 @@ const addUserValidators = [
   check("name")
     .isLength({ min: 1 })
     .withMessage("Name is required")
-    .isAlpha("en-US", { ignore: " -" })
+    .isAlphanumeric("en-US", { ignore: " -" })
     .withMessage("Name must not contain anything other than alphabet")
     .trim(),
 
@@ -36,8 +36,8 @@ const addUserValidators = [
     .withMessage("Need number with country code")
     .custom(async (value) => {
       try {
-        const user = People.findOne({ mobile: value });
-
+        const user = await People.findOne({ mobile: value });
+        // console.log(user);
         if (user) {
           throw createError("Mobile number already in use!");
         }

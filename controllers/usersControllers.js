@@ -1,10 +1,15 @@
 const bcrypt = require("bcrypt");
 const People = require("./../models/people");
 const createError = require("http-errors");
-function getUser(req, res, next) {
-  res.render("users");
+
+async function getUser(req, res, next) {
+  const users = await People.find();
+  res.render("users", {
+    users,
+  });
 }
-async function addUser(req, res) {
+
+async function addUser(req, res, next) {
   let newUser;
   const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
@@ -22,9 +27,8 @@ async function addUser(req, res) {
   }
 
   try {
-    const People = new People(newUser);
-
-    await People.save();
+    const people = new People(newUser);
+    await people.save();
 
     res.status(201).json({
       message: "User added successfully!",
