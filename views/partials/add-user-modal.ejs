@@ -38,7 +38,6 @@
       const successToast = Toastify({
         text:"User added successfully! Reloading the list...",
         duration:1000
-
       })
       const modal = document.querySelector("#add-user-modal");
       
@@ -92,14 +91,13 @@
 
           })
         }else{
-          
+          successToast.showToast();
+          closeModal();
           // document.querySelector("p.error").style.display = "none";
 
-          setTimeout(()=>{
-            successToast.showToast();
-            closeModal();
+          setTimeout(()=>{ 
             location.reload();
-          },500)
+          },1000)
         }
 
       }

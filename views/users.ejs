@@ -20,7 +20,7 @@
           </thead>
           <tbody id="users-table">
             <% users.forEach((user)=>{ %>
-            <tr id="<%user._id%>">
+            <tr id="<%=user._id%>">
               
               <td class="name">
                 <%if(user.avatar){%>
@@ -33,7 +33,7 @@
               </td>
               <td><%= user.email%></td>
               <td class="manage">
-                <img src="./images/trash.png" alt="Delete" />
+                <img src="./images/trash.png" alt="Delete" onclick="removeUser('<%=user._id%>')"/>
               </td>
             </tr>
             <%}) %>
@@ -44,5 +44,29 @@
     </div>
 
     <%- include("./partials/add-user-modal.ejs"); %>
+    <script>
+      const deleteToast = Toastify({
+        text:"User successfully deleted",
+        duration: 2000
+      })
+      const errorToast = Toastify({
+        text:"Couldn't delete the user",
+        duration:2000
+      })
+      async function removeUser(userId){
+        const res = await fetch(`/users/${userId}`,{
+          method:"delete"
+        })
+        const data = await res.json();
+        // console.log(data);
+        if(data.errors){
+          errorToast.showToast();
+        }else{
+          deleteToast.showToast();
+          // location.reload();
+          document.getElementById(userId).remove();
+        }
+      }
+    </script>
   </body>
 </html>
