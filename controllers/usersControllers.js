@@ -4,6 +4,7 @@ const createError = require("http-errors");
 
 async function getUser(req, res, next) {
   const users = await People.find();
+  // console.log(users);
   res.render("users", {
     users,
   });
