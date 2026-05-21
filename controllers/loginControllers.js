@@ -64,7 +64,7 @@ async function login(req, res) {
 }
 
 function logout(req, res) {
-  res.clearCookies(process.env.COOKIE_KEY);
+  res.clearCookie(process.env.COOKIE_KEY);
   res.send("logged out");
 }
 
