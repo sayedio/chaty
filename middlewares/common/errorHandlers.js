@@ -11,7 +11,7 @@ function handleError(err, req, res, next) {
       desc: res.locals.error,
     });
   } else {
-    res.status(err.status).json({
+    res.status(500).json({
       status: err.status,
       message: err.message,
       error: res.locals.error,

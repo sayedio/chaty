@@ -41,7 +41,7 @@ async function login(req, res) {
           role: user.role,
           mobile: user.mobile,
         };
-        res.render("inbox");
+        res.redirect("/inbox");
       } else {
         throw createError("Incorrect username or password");
       }
@@ -63,7 +63,13 @@ async function login(req, res) {
   }
 }
 
+function logout(req, res) {
+  res.clearCookies(process.env.COOKIE_KEY);
+  res.send("logged out");
+}
+
 module.exports = {
   getLogin,
   login,
+  logout,
 };
